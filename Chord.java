@@ -76,7 +76,7 @@ public class Chord {
 					}
 				} else {
 					if ((this.fingertable[i] > this.id && this.fingertable[i] <= Math.pow(2, m) - 1)
-							|| (this.fingertable[i] >= 0 && this.fingertable[i] < this.id)) {
+							|| (this.fingertable[i] >= 0 && this.fingertable[i] < id)) {
 						return (fingertable[i]);
 					}
 				}
@@ -184,6 +184,11 @@ public class Chord {
 			}
 			try {
 				m = Integer.parseInt(args[2]);
+				if(m<1 || m>31) {
+					System.out.println("ERROR: invalid size of fingertable " + m+ "It should be in range [1,31]");
+					sc.close();
+					return;
+				}
 			} catch (Exception e) {
 				System.out.println("ERROR: invalid integer " + m);
 				sc.close();
@@ -194,6 +199,11 @@ public class Chord {
 			sc = new Scanner(System.in);
 			try {
 				m = Integer.parseInt(args[0]);
+				if(m<1 || m>31) {
+					System.out.println("ERROR: invalid size of fingertable " + m+ "It should be in range [1,31]");
+					sc.close();
+					return;
+				}
 			} catch (Exception e) {
 				System.out.println("ERROR: invalid integer " + m);
 				sc.close();
