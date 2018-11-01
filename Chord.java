@@ -190,7 +190,7 @@ public class Chord {
 					return;
 				}
 			} catch (Exception e) {
-				System.out.println("ERROR: invalid integer " + m);
+				System.out.println("ERROR: invalid integer " + args[0]);
 				sc.close();
 				return;
 			}
@@ -205,7 +205,7 @@ public class Chord {
 					return;
 				}
 			} catch (Exception e) {
-				System.out.println("ERROR: invalid integer " + m);
+				System.out.println("ERROR: invalid integer " + args[0]);
 				sc.close();
 				return;
 			}
