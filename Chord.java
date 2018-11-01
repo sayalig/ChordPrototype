@@ -171,14 +171,40 @@ public class Chord {
 		return instance;
 	}
 
-	public static void main(String[] args) throws FileNotFoundException {
-		try {
-			m = Integer.parseInt(args[2]);
-		} catch (Exception e) {
-			System.out.println("ERROR: invalid integer " + m);
+	public static void main(String[] args) {
+		Scanner sc;
+		if(args.length==3 && args[0].equals("-i")) {
+			File f = new File(args[1]);
+			try {
+				sc = new Scanner(f);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Please give correct file name");
+				return;
+			}
+			try {
+				m = Integer.parseInt(args[2]);
+			} catch (Exception e) {
+				System.out.println("ERROR: invalid integer " + m);
+				sc.close();
+				return;
+			}
 		}
-		File f = new File(args[1]);
-		Scanner sc = new Scanner(f);
+		else if(args.length==1){
+			sc = new Scanner(System.in);
+			try {
+				m = Integer.parseInt(args[0]);
+			} catch (Exception e) {
+				System.out.println("ERROR: invalid integer " + m);
+				sc.close();
+				return;
+			}
+		}
+		else {
+			System.out.println("ERROR: Wrong Arguments. Please use chord -i filename m for batch mode and chord m for interactive mode");
+			return;
+		}
+		
 		while (sc.hasNextLine()) {
 			String curr = sc.nextLine();
 			// for (String curr : currs) {
