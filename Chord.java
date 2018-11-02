@@ -97,6 +97,9 @@ public class Chord {
 		}
 
 		void stabilize() {
+			if(!chord.containsKey(this.succ)) {
+				return;
+			}
 			int x = chord.get(this.succ).pre;
 			if (x != -1) {
 				if (this.succ <= this.id) {
@@ -338,6 +341,7 @@ public class Chord {
 				}
 			} catch (Exception e) {
 				System.out.println("ERROR: invalid integer " + arr[1]);
+				e.printStackTrace();
 			}
 		}
 
