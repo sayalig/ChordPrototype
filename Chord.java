@@ -340,7 +340,7 @@ public class Chord {
 				}
 			} catch (Exception e) {
 				System.out.println("ERROR: invalid integer " + arr[1]);
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 	}
