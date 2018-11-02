@@ -1,6 +1,7 @@
 # ssgodbol_hw2
 
 Run Instructions:
+Assuming Java 8 is pre-installed
 1. Clone the Repo
 2. Go to the folder "ssgodbol_hw2"
 3. Run ```make```
