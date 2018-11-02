@@ -224,14 +224,14 @@ public class Chord {
 			try {
 
 				if (arr.length > 1) {
-					if ((Integer.parseInt(arr[1]) >= Math.pow(2, m)) || (Integer.parseInt(arr[1]) < 1)) {
-						System.out.println("ERROR: node id must be in [0," + (int) Math.pow(2, m) + "]");
+					if ((Integer.parseInt(arr[1]) >= Math.pow(2, m)) || (Integer.parseInt(arr[1]) < 0)) {
+						System.out.println("ERROR: node id must be in [0," + (int) (Math.pow(2, m)-1) + "]");
 						continue;
 					}
 				}
 				if (arr.length > 2) {
-					if ((Integer.parseInt(arr[2]) >= Math.pow(2, m)) || (Integer.parseInt(arr[2]) < 1)) {
-						System.out.println("ERROR: node id must be in [0," + (int) (Math.pow(2, m)) + "]");
+					if ((Integer.parseInt(arr[2]) >= Math.pow(2, m)) || (Integer.parseInt(arr[2]) < 0)) {
+						System.out.println("ERROR: node id must be in [0," + (int) (Math.pow(2, m)-1) + "]");
 						continue;
 					}
 				}
