@@ -147,14 +147,12 @@ public class Chord {
 		}
 
 		void drop() {
-			// --------------------------//
 			Node successor = chord.get(this.succ);
 			if (this.pre != -1) {
 				Node predecessor = chord.get(this.pre);
 				predecessor.setSucc(this.succ);
 			}
 			successor.setPre(this.pre);
-			// --------------------------//
 		}
 
 	}
@@ -181,7 +179,6 @@ public class Chord {
 			try {
 				sc = new Scanner(f);
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				System.out.println("Please give correct file name");
 				return;
 			}
@@ -220,7 +217,6 @@ public class Chord {
 		
 		while (sc.hasNextLine()) {
 			String curr = sc.nextLine();
-			// for (String curr : currs) {
 			String arr[] = curr.split(" ");
 			try {
 
@@ -344,11 +340,7 @@ public class Chord {
 				e.printStackTrace();
 			}
 		}
-
-		// }
-
 	}
-
 }
 /*
  * References: 1.
