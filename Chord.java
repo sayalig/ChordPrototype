@@ -55,9 +55,6 @@ public class Chord {
 						return this.succ;
 					} else {
 						int n = closest_preceding_node(id);
-						if (!chord.containsKey(n)) {
-							return id;
-						}
 						Node a = chord.get(n);
 						return a.find_successor(id);
 					}
@@ -105,7 +102,10 @@ public class Chord {
 
 		void stabilize() {
 			if (!chord.containsKey(this.succ)) {
-				return;
+				this.succ=this.id;
+			}
+			if (!chord.containsKey(this.pre)) {
+				this.pre=-1;
 			}
 			int x = chord.get(this.succ).pre;
 			if (x != -1) {
@@ -224,18 +224,18 @@ public class Chord {
 
 		while (sc.hasNextLine()) {
 			String curr = sc.nextLine();
-				System.out.println(curr);
+			//	System.out.println(curr);
 			String arr[] = curr.split(" ");
 			try {
 
 				if (arr.length > 1) {
-					if ((Integer.parseInt(arr[1]) >= Math.pow(2, m)) && (Integer.parseInt(arr[1]) < 1)) {
+					if ((Integer.parseInt(arr[1]) >= Math.pow(2, m)) || (Integer.parseInt(arr[1]) < 1)) {
 						System.out.println("ERROR: node id must be in [0," + (int) Math.pow(2, m) + "]");
 						continue;
 					}
 				}
 				if (arr.length > 2) {
-					if ((Integer.parseInt(arr[2]) >= Math.pow(2, m)) && (Integer.parseInt(arr[2]) < 1)) {
+					if ((Integer.parseInt(arr[2]) >= Math.pow(2, m)) || (Integer.parseInt(arr[2]) < 1)) {
 						System.out.println("ERROR: node id must be in [0," + (int) (Math.pow(2, m)) + "]");
 						continue;
 					}
