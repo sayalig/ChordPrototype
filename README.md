@@ -2,8 +2,8 @@
 
 Run Instructions:
 Assuming Java 8 is pre-installed
-1. Clone the Repo
-2. Go to the folder "ssgodbol_hw2"
+1. Clone the Repo using ```git clone https://github.ncsu.edu/ssgodbol/ssgodbol_hw2.git```
+2. Go to the folder "ssgodbol_hw2" using ```cd ssgodbol_hw2```
 3. Run ```make```
 4. Run the tests
 
