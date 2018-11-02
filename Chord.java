@@ -48,24 +48,31 @@ public class Chord {
 		}
 
 		int find_successor(int id) {
-			if (this.succ <= this.id) {
-				if ((this.id < id && id <= Math.pow(2, m) - 1) || (0 <= id && id <= this.succ)) {
-					return this.succ;
+			//if (id != -1) {
+			
+				if (this.succ <= this.id) {
+					if ((this.id < id && id <= Math.pow(2, m) - 1) || (0 <= id && id <= this.succ)) {
+						return this.succ;
+					} else {
+						int n = closest_preceding_node(id);
+						if (!chord.containsKey(n)) {
+							return id;
+						}
+						Node a = chord.get(n);
+						return a.find_successor(id);
+					}
 				} else {
-					int n = closest_preceding_node(id);
-					Node a = chord.get(n);
-					return a.find_successor(id);
+					if (this.id < id && id <= this.succ) {
+						return this.succ;
+					} else {
+						int n = closest_preceding_node(id);
+						Node a = chord.get(n);
+						return a.find_successor(id);
+					}
 				}
-			} else {
-				if (this.id < id && id <= this.succ) {
-					return this.succ;
-				} else {
-					int n = closest_preceding_node(id);
-					Node a = chord.get(n);
-					return a.find_successor(id);
-				}
-			}
-
+			//}
+			//else
+				//return -1;
 		}
 
 		int closest_preceding_node(int id) {
@@ -97,7 +104,7 @@ public class Chord {
 		}
 
 		void stabilize() {
-			if(!chord.containsKey(this.succ)) {
+			if (!chord.containsKey(this.succ)) {
 				return;
 			}
 			int x = chord.get(this.succ).pre;
@@ -174,7 +181,7 @@ public class Chord {
 
 	public static void main(String[] args) {
 		Scanner sc;
-		if(args.length==3 && args[0].equals("-i")) {
+		if (args.length == 3 && args[0].equals("-i")) {
 			File f = new File(args[1]);
 			try {
 				sc = new Scanner(f);
@@ -185,8 +192,8 @@ public class Chord {
 			}
 			try {
 				m = Integer.parseInt(args[2]);
-				if(m<1 || m>31) {
-					System.out.println("ERROR: invalid size of fingertable " + m+ "It should be in range [1,31]");
+				if (m < 1 || m > 31) {
+					System.out.println("ERROR: invalid size of fingertable " + m + "It should be in range [1,31]");
 					sc.close();
 					return;
 				}
@@ -195,13 +202,12 @@ public class Chord {
 				sc.close();
 				return;
 			}
-		}
-		else if(args.length==1){
+		} else if (args.length == 1) {
 			sc = new Scanner(System.in);
 			try {
 				m = Integer.parseInt(args[0]);
-				if(m<1 || m>31) {
-					System.out.println("ERROR: invalid size of fingertable " + m+ "It should be in range [1,31]");
+				if (m < 1 || m > 31) {
+					System.out.println("ERROR: invalid size of fingertable " + m + "It should be in range [1,31]");
 					sc.close();
 					return;
 				}
@@ -210,25 +216,26 @@ public class Chord {
 				sc.close();
 				return;
 			}
-		}
-		else {
-			System.out.println("ERROR: Wrong Arguments. Please use chord -i filename m for batch mode and chord m for interactive mode");
+		} else {
+			System.out.println(
+					"ERROR: Wrong Arguments. Please use chord -i filename m for batch mode and chord m for interactive mode");
 			return;
 		}
-		
+
 		while (sc.hasNextLine()) {
 			String curr = sc.nextLine();
+				System.out.println(curr);
 			String arr[] = curr.split(" ");
 			try {
 
 				if (arr.length > 1) {
-					if ((Integer.parseInt(arr[1]) >= Math.pow(2, m)) && (Integer.parseInt(arr[1])<1)) {
+					if ((Integer.parseInt(arr[1]) >= Math.pow(2, m)) && (Integer.parseInt(arr[1]) < 1)) {
 						System.out.println("ERROR: node id must be in [0," + (int) Math.pow(2, m) + "]");
 						continue;
 					}
 				}
 				if (arr.length > 2) {
-					if ((Integer.parseInt(arr[2]) >= Math.pow(2, m)) && (Integer.parseInt(arr[2])<1)) {
+					if ((Integer.parseInt(arr[2]) >= Math.pow(2, m)) && (Integer.parseInt(arr[2]) < 1)) {
 						System.out.println("ERROR: node id must be in [0," + (int) (Math.pow(2, m)) + "]");
 						continue;
 					}
@@ -338,6 +345,7 @@ public class Chord {
 				}
 			} catch (Exception e) {
 				System.out.println("ERROR: invalid integer " + arr[1]);
+				e.printStackTrace();
 			}
 		}
 	}
