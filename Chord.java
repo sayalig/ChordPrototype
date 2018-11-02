@@ -179,6 +179,7 @@ public class Chord {
 			try {
 				sc = new Scanner(f);
 			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
 				System.out.println("Please give correct file name");
 				return;
 			}
@@ -337,10 +338,10 @@ public class Chord {
 				}
 			} catch (Exception e) {
 				System.out.println("ERROR: invalid integer " + arr[1]);
-				e.printStackTrace();
 			}
 		}
 	}
+
 }
 /*
  * References: 1.
