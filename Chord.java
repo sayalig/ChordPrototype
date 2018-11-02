@@ -48,28 +48,23 @@ public class Chord {
 		}
 
 		int find_successor(int id) {
-			//if (id != -1) {
-			
-				if (this.succ <= this.id) {
-					if ((this.id < id && id <= Math.pow(2, m) - 1) || (0 <= id && id <= this.succ)) {
-						return this.succ;
-					} else {
-						int n = closest_preceding_node(id);
-						Node a = chord.get(n);
-						return a.find_successor(id);
-					}
+			if (this.succ <= this.id) {
+				if ((this.id < id && id <= Math.pow(2, m) - 1) || (0 <= id && id <= this.succ)) {
+					return this.succ;
 				} else {
-					if (this.id < id && id <= this.succ) {
-						return this.succ;
-					} else {
-						int n = closest_preceding_node(id);
-						Node a = chord.get(n);
-						return a.find_successor(id);
-					}
+					int n = closest_preceding_node(id);
+					Node a = chord.get(n);
+					return a.find_successor(id);
 				}
-			//}
-			//else
-				//return -1;
+			} else {
+				if (this.id < id && id <= this.succ) {
+					return this.succ;
+				} else {
+					int n = closest_preceding_node(id);
+					Node a = chord.get(n);
+					return a.find_successor(id);
+				}
+			}
 		}
 
 		int closest_preceding_node(int id) {
@@ -102,10 +97,10 @@ public class Chord {
 
 		void stabilize() {
 			if (!chord.containsKey(this.succ)) {
-				this.succ=this.id;
+				this.setSucc(this.id);
 			}
 			if (!chord.containsKey(this.pre)) {
-				this.pre=-1;
+				this.pre = -1;
 			}
 			int x = chord.get(this.succ).pre;
 			if (x != -1) {
@@ -224,7 +219,7 @@ public class Chord {
 
 		while (sc.hasNextLine()) {
 			String curr = sc.nextLine();
-			//	System.out.println(curr);
+			// System.out.println(curr);
 			String arr[] = curr.split(" ");
 			try {
 
